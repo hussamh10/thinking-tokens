@@ -26,14 +26,11 @@ def fix_wikilinks(s: str) -> str:
     # [[Note]] / [[Note|Alias]] / [[Note#Heading]] -> Note.md
     return re.sub(r"\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]", r"\1.md", s)
 
-# Keep a manual index.md if you've hand-written one:
-manual_index = (DEST / "index.md").exists()
 exported = []
 
-# Clear docs/ except index.md and assets/
+# Clear docs/ except assets/
 for p in DEST.glob("*.md"):
-    if p.name != "index.md":
-        p.unlink()
+    p.unlink()
 
 for md in VAULT.rglob("*.md"):
     if not md.is_file():
@@ -55,24 +52,23 @@ if assets_src.exists():
     if assets_dst.exists(): shutil.rmtree(assets_dst)
     shutil.copytree(assets_src, assets_dst)
 
-# Auto-generate index.md unless you hand-wrote one
-if not manual_index:
-    exported.sort(key=lambda t: t[0].lower())
-    lines = [
-        '<div class="win98-window">',
-        '  <div class="win98-titlebar"><span class="win98-icon"></span> Hussam — Notes</div>',
-        '  <h3>Published notes</h3>',
-        '  <ul class="win98-list">'
-    ]
-    for title, fname in exported:
-        if fname != "index.md":
-            lines.append(f'    <li><a href="{fname}">{title}</a></li>')
-    lines += [
-        '  </ul>',
-        '</div>',
-        ''
-    ]
-    (DEST / "index.md").write_text("\n".join(lines), encoding="utf-8")
+# Always regenerate index.md
+exported.sort(key=lambda t: t[0].lower())
+lines = [
+    '<div class="win98-window">',
+    '  <div class="win98-titlebar"><span class="win98-icon"></span> Hussam — Notes</div>',
+    '  <h3>Published notes</h3>',
+    '  <ul class="win98-list">'
+]
+for title, fname in exported:
+    if fname != "index.md":
+        lines.append(f'    <li><a href="{fname}">{title}</a></li>')
+lines += [
+    '  </ul>',
+    '</div>',
+    ''
+]
+(DEST / "index.md").write_text("\n".join(lines), encoding="utf-8")
 
-print(f"Exported {len(exported)} notes.")
+print(f"Exported {len(exported)} notes (index.md regenerated).")
 
