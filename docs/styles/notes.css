@@ -2,38 +2,53 @@
 body:not(.home-index) {
   background: #ffffff !important;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Liberation Mono", monospace;
-  font-family: var(--mono);
-  margin: 0;
-  padding: 0;
+  font-family: var(--mono) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* Hide all Material chrome */
+/* Hide ALL chrome (header, nav, sidebars, footer, tabs, search, overlays) */
 body:not(.home-index) .md-header,
 body:not(.home-index) .md-sidebar,
 body:not(.home-index) .md-footer,
+body:not(.home-index) .md-tabs,
+body:not(.home-index) .md-overlay,
 body:not(.home-index) nav,
-body:not(.home-index) .md-tabs {
+body:not(.home-index) [data-md-component="header"],
+body:not(.home-index) [data-md-component="sidebar"],
+body:not(.home-index) [data-md-component="toc"],
+body:not(.home-index) [data-md-component="announce"] {
   display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
 }
 
-/* Reset container so only content is shown */
-body:not(.home-index) .md-container {
+/* Force container reset */
+body:not(.home-index) .md-container,
+body:not(.home-index) .md-main,
+body:not(.home-index) .md-main__inner,
+body:not(.home-index) .md-content,
+body:not(.home-index) .md-content__inner {
+  all: unset;
+  display: block !important;
   margin: 0 !important;
   padding: 0 !important;
-  max-width: none !important;
-  width: 100% !important;
 }
 
-/* Only show the content inner */
-body:not(.home-index) .md-main__inner {
-  display: block !important;
-  width: 80ch;                 /* wrap text at ~80 characters */
-  margin: 2rem auto;           /* center horizontally */
-  transform: translateX(60px); /* nudge a bit right */
+/* Actual article styling */
+body:not(.home-index) article.md-content__inner {
+  width: 80ch !important;         /* wrap at ~80 chars */
+  margin: 2rem auto !important;   /* center horizontally */
+  transform: translateX(60px);    /* nudge right */
+  font-family: var(--mono) !important;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
-/* Remove "Home" or page title blocks */
-body:not(.home-index) h1:first-of-type {
+/* Kill the automatic page title at the top */
+body:not(.home-index) article.md-content__inner h1:first-child {
   display: none !important;
 }
 
