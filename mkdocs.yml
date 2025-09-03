@@ -1,25 +1,23 @@
 site_name: Hussam — Notes
-site_url: https://hussamhabib.com/notes/   # <- important
+site_url: https://hussamhabib.com/notes/
 
 theme:
   name: material
-  features:
-    - navigation.instant
-    - navigation.top
-    - content.code.copy
+  features: []   # keep it minimal (you can add back later)
+
+extra_css:
+  - styles/win98.css   # <-- add this
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
 
 plugins:
   - search
   - roamlinks
 
-markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - footnotes
-  - toc:
-      permalink: true
-
 docs_dir: docs
-# This avoids some edge cases with asset paths under a subpath:
 use_directory_urls: false
 

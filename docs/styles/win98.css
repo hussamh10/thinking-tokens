@@ -1,0 +1,91 @@
+/* --- Windows 98-ish minimal look --- */
+
+/* System-ish fonts */
+:root {
+  --win98-font: "MS Sans Serif", Tahoma, Verdana, system-ui, sans-serif;
+  --win98-blue: #0000ee;     /* classic link blue */
+  --win98-gray: #c0c0c0;     /* desktop gray */
+  --win98-dark: #808080;     /* dark edge */
+  --win98-light: #ffffff;    /* light edge */
+}
+
+/* Body + background */
+body {
+  background: var(--win98-gray) !important;
+  font-family: var(--win98-font) !important;
+}
+
+/* Hide most chrome to keep it minimal */
+.md-header, .md-search, .md-sidebar--primary, .md-sidebar--secondary {
+  display: none !important;
+}
+
+/* Center the main content */
+.md-main {
+  margin-top: 4rem;
+}
+
+.md-main__inner {
+  display: flex;
+  justify-content: center;
+}
+
+/* “Window” card */
+.win98-window {
+  background: var(--win98-gray);
+  padding: 1rem 1.25rem;
+  width: min(720px, 92vw);
+  /* 3D inset border */
+  border-top: 2px solid var(--win98-light);
+  border-left: 2px solid var(--win98-light);
+  border-right: 2px solid var(--win98-dark);
+  border-bottom: 2px solid var(--win98-dark);
+  box-shadow: 2px 2px 0 #00000033;
+}
+
+/* Title bar */
+.win98-titlebar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: -1rem -1.25rem 1rem -1.25rem;
+  padding: .35rem .5rem;
+  color: #fff;
+  background: linear-gradient(180deg, #000080, #000060);
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* Icon square (fake) */
+.win98-icon {
+  width: 14px; height: 14px;
+  background: #ff0;
+  border: 1px solid #000;
+  display: inline-block;
+}
+
+/* Link list */
+.win98-list {
+  list-style: square;
+  padding-left: 1.25rem;
+  margin: .5rem 0 0 0;
+}
+
+.win98-list a {
+  color: var(--win98-blue) !important;
+  text-decoration: underline;
+}
+
+/* Headings/body */
+.win98-window h1,
+.win98-window h2,
+.win98-window p {
+  color: #000;
+}
+
+/* Make default content container narrow */
+.md-content {
+  width: 100%;
+  max-width: none;
+}
+
