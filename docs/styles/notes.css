@@ -47,3 +47,15 @@ body:not(.home-index) .md-typeset pre > code {
   font-size: 0.95em;
 }
 
+/* Remove header + sidebars on every page */
+.md-header,
+.md-sidebar--primary,
+.md-sidebar--secondary {
+  display: none !important;
+}
+
+/* Since the header is gone, give the main content some breathing room */
+.md-main {
+  margin-top: 2rem;
+}
+

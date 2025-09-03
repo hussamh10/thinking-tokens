@@ -59,3 +59,20 @@
 /* Make homepage content container wide enough */
 .home-index .md-content { width: 100%; max-width: none; }
 
+/* ---------- Win98 look ONLY on homepage ---------- */
+.home-index {
+  background: #c0c0c0 !important;
+  font-family: "MS Sans Serif", Tahoma, Verdana, system-ui, sans-serif !important;
+}
+
+/* center the “window” */
+.home-index .md-main__inner {
+  display: flex;
+  justify-content: center;
+}
+
+.win98-window { /* ... your existing window styles ... */ }
+.win98-titlebar { /* ... */ }
+.win98-icon { /* ... */ }
+.win98-list a { color: #0000ee !important; text-decoration: underline; }
+

@@ -1,7 +1,15 @@
+---
+title: ""
+hide:
+  - navigation
+  - toc
+  - footer
+  - title
+---
 <script>document.body.classList.add("home-index");</script>
+
 <div class="win98-window">
   <div class="win98-titlebar"><span class="win98-icon"></span> Hussam — Thinking Tokens</div>
-  <ul class="win98-list">
   <h3>Readings</h3>
   <h4>Brothers Karamazov</h4>
   <ul class="win98-list">
@@ -16,6 +24,5 @@
   <h3>Writings</h3>
   <ul class="win98-list">
     <li><a href="nostalgia/">Nostalgia.</a></li>
-  </ul>
   </ul>
 </div>
