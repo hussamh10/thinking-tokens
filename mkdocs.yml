@@ -1,0 +1,26 @@
+site_name: Hussam — Notes
+# If you want PATH: use the first; if SUBDOMAIN: use the second
+site_url: https://hussamhabib.com/notes/
+# site_url: https://notes.hussamhabib.com/
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.top
+    - content.code.copy
+
+plugins:
+  - search
+  - roamlinks     # supports Obsidian-style [[wikilinks]]
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - footnotes
+  - toc:
+      permalink: true
+
+docs_dir: docs
+use_directory_urls: true
+
