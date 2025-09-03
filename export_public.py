@@ -50,12 +50,12 @@ for md in VAULT.rglob("*.md"):
     if wants_publish(md):
         txt = md.read_text(encoding="utf-8")
         fm, body = parse_front_matter(txt)
-        out_name = f"{md.stem}.md"
+        title = fm.get("title") or md.stem
         safe_name = slugify(md.stem) + ".md"
-        out_path = DEST / out_name
+        out_path = DEST / safe_name
         out_path.write_text(fix_wikilinks(txt), encoding="utf-8")
         if out_name != "index.md":
-            exported.append((safe_name, out_name))
+            exported.append((title, out_name))
 
 # Copy assets if you use them
 assets_src = VAULT / "Public" / "assets"
