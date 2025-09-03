@@ -6,6 +6,18 @@ DEST.mkdir(parents=True, exist_ok=True)
 
 FM_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 
+
+def slugify(name: str) -> str:
+    # Drop extension, lowercase, replace spaces with dashes, strip bad chars
+    base = re.sub(r"\.md$", "", name, flags=re.IGNORECASE)
+    base = base.strip().lower()
+    base = re.sub(r"[ _]+", "-", base)          # spaces/underscores -> -
+    base = re.sub(r"[^a-z0-9\-]+", "", base)    # keep alnum + dashes
+    base = re.sub(r"-{2,}", "-", base).strip("-")
+    return base or "index"
+
+USE_DIRECTORY_URLS = True   # set False if you use use_directory_urls: false
+
 def parse_front_matter(text):
     m = FM_RE.match(text)
     if not m:
@@ -53,22 +65,23 @@ if assets_src.exists():
     shutil.copytree(assets_src, assets_dst)
 
 # Always regenerate index.md
+
 exported.sort(key=lambda t: t[0].lower())
+
+def mkdocs_href(out_name: str) -> str:
+    slug = slugify(out_name)
+    return f"{slug}/" if USE_DIRECTORY_URLS else f"{slug}.html"
+
 lines = [
     '<div class="win98-window">',
-    '  <div class="win98-titlebar"><span class="win98-icon"></span> Hussam — Notes</div>',
-    '  <h3>Published notes</h3>',
+    '  <div class="win98-titlebar"><span class="win98-icon"></span> Hussam — Thinking Tokens</div>',
     '  <ul class="win98-list">'
 ]
 for title, fname in exported:
     if fname != "index.md":
-        lines.append(f'    <li><a href="{fname}">{title}</a></li>')
-lines += [
-    '  </ul>',
-    '</div>',
-    ''
-]
-(DEST / "index.md").write_text("\n".join(lines), encoding="utf-8")
+        href = mkdocs_href(fname)
+        lines.append(f'    <li><a href="{href}">{title}</a></li>')
+lines += ['  </ul>', '</div>', '']
 
 print(f"Exported {len(exported)} notes (index.md regenerated).")
 
