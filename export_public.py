@@ -55,7 +55,7 @@ for md in VAULT.rglob("*.md"):
         out_path = DEST / out_name
         out_path.write_text(fix_wikilinks(txt), encoding="utf-8")
         if out_name != "index.md":
-            exported.append((title, out_name))
+            exported.append((safe_name, out_name))
 
 # Copy assets if you use them
 assets_src = VAULT / "Public" / "assets"
