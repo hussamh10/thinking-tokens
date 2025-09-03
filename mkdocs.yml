@@ -1,9 +1,6 @@
 site_name: Hussam — Notes
 site_url: https://hussamhabib.com/notes/
 
-theme:
-  name: material
-  features: []  # minimal chrome
 
 plugins:
   - search
@@ -29,5 +26,6 @@ extra_javascript:
   - assets/lock.js
 
 theme:
-  name: material  # or your theme
-  custom_dir: overrides
+  name: material
+  features: []                # keep your minimal chrome
+  custom_dir: overrides       # keep the overrides folder
