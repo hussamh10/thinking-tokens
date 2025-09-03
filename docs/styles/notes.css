@@ -1,0 +1,49 @@
+/* ---------- Notes pages (not homepage) ---------- */
+
+/* Only apply when NOT on the homepage */
+body:not(.home-index) {
+  background: #ffffff;
+  /* Prefer nice monospace stack */
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Liberation Mono", "Courier New", monospace;
+  font-family: var(--mono);
+}
+
+/* Content column: left-aligned text, 80ch measure.
+   Starts slightly to the right of center: center it, then nudge right. */
+body:not(.home-index) .md-content {
+  max-width: none;               /* let inner control width */
+}
+
+body:not(.home-index) .md-content .md-content__inner {
+  width: 80ch;                   /* wrap at ~80 chars */
+  margin: 2.5rem auto 6rem auto; /* center horizontally */
+  transform: translateX(60px);   /* nudge "a bit right of center" */
+}
+
+/* Title: bold & big */
+body:not(.home-index) .md-typeset h1 {
+  font-family: var(--mono);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  line-height: 1.15;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Body text tweaks */
+body:not(.home-index) .md-typeset {
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+/* Keep links simple */
+body:not(.home-index) .md-typeset a {
+  text-decoration: underline;
+}
+
+/* Optional: soften code blocks a bit */
+body:not(.home-index) .md-typeset pre > code {
+  font-family: var(--mono);
+  font-size: 0.95em;
+}
+
