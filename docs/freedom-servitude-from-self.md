@@ -1,5 +1,5 @@
 ---
-section: reading notes
+section: Readings/Brothers Karamazov
 publish: true
 ---
 > In the fifth chapter Elders, when describing what elders are and how the concept was introduced from the East to Russia, Dostoevsky makes an intriguing remark. In the beginning, he says that students come to elders and become *obedient*—to an extreme—to achieve freedom from self. At the end, he remarks that they must remain cautious during the process of obedience as to not fall for the most satanic pride: servitude. 

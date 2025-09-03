@@ -1,4 +1,5 @@
 ---
+section: Reading/Quran
 publish: true
 ---
 

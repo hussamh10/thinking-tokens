@@ -1,4 +1,5 @@
 ---
+section: Writings
 publish: true
 ---
 outline-nostalgia.md
