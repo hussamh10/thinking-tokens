@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% if page and page.meta and page.meta.password %}
+    <meta name="page-password" content="{{ page.meta.password | e }}">
+  {% endif %}
+  {% if config.extra and config.extra.admin_password %}
+    <meta name="admin-password" content="{{ config.extra.admin_password | e }}">
+  {% endif %}
+  <style>
+    /* Hide content if the page requires a password and not yet unlocked */
+    html[data-locked="true"] body {
+      visibility: hidden;   /* avoids content flash */
+    }
+  </style>
+  <script>
+    // If this page has a password, mark as locked ASAP (prevents flicker)
+    (function() {
+      var metas = document.getElementsByTagName('meta');
+      var hasPagePassword = false;
+      for (var i = 0; i < metas.length; i++) {
+        if (metas[i].getAttribute('name') === 'page-password') {
+          hasPagePassword = true;
+          break;
+        }
+      }
+      if (hasPagePassword) {
+        document.documentElement.setAttribute('data-locked', 'true');
+      }
+    })();
+  </script>
+{% endblock %}
+

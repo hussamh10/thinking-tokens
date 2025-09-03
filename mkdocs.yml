@@ -22,3 +22,14 @@ extra_css:
   - styles/win98.css
   - styles/notes.css
 
+extra:
+  admin_password: "letmein"   # ← choose your global admin password
+
+extra_javascript:
+  - assets/lock.js
+
+theme:
+  name: material  # or your theme
+  custom_dir: overrides
+
+

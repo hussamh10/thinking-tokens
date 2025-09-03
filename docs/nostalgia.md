@@ -1,6 +1,7 @@
 ---
 section: Writings
 publish: true
+password: benjamin
 ---
 outline-nostalgia.md
 `mumkin nahi ha waqt ki raftaar rok lein `
