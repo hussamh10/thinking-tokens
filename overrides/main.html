@@ -2,31 +2,61 @@
 
 {% block extrahead %}
   {{ super() }}
+
+  {# Expose page + admin password via meta #}
   {% if page and page.meta and page.meta.password %}
     <meta name="page-password" content="{{ page.meta.password | e }}">
   {% endif %}
   {% if config.extra and config.extra.admin_password %}
     <meta name="admin-password" content="{{ config.extra.admin_password | e }}">
   {% endif %}
+
   <style>
-    /* Hide content if the page requires a password and not yet unlocked */
-    html[data-locked="true"] body {
-      visibility: hidden;   /* avoids content flash */
-    }
+    /* Hide content if locked */
+    html[data-locked="true"] body { visibility: hidden; }
   </style>
+
   <script>
-    // If this page has a password, mark as locked ASAP (prevents flicker)
     (function() {
-      var metas = document.getElementsByTagName('meta');
-      var hasPagePassword = false;
-      for (var i = 0; i < metas.length; i++) {
-        if (metas[i].getAttribute('name') === 'page-password') {
-          hasPagePassword = true;
-          break;
-        }
+      function getMeta(name) {
+        var m = document.querySelector('meta[name="' + name + '"]');
+        return m ? m.getAttribute('content') : null;
       }
-      if (hasPagePassword) {
+      var pagePw = getMeta('page-password');
+      var adminPw = getMeta('admin-password');
+
+      // If page has a password, mark as locked immediately (prevent flicker)
+      if (pagePw) {
         document.documentElement.setAttribute('data-locked', 'true');
+      }
+
+      // If no password on this page, nothing to do
+      if (!pagePw) return;
+
+      var pageKey = 'unlocked:' + location.pathname;
+
+      // Already unlocked this session?
+      if (sessionStorage.getItem(pageKey) === '1') {
+        document.documentElement.removeAttribute('data-locked');
+        return;
+      }
+
+      // Prompt up to 5 times
+      var ok = false;
+      for (var tries = 0; tries < 5; tries++) {
+        var input = window.prompt('This page is locked. Enter password:');
+        if (input === null) break; // cancel
+        if ((adminPw && input === adminPw) || input === pagePw) { ok = true; break; }
+        alert('Incorrect password. Try again.');
+      }
+
+      if (ok) {
+        sessionStorage.setItem(pageKey, '1');
+        document.documentElement.removeAttribute('data-locked');
+      } else {
+        // Stay hidden, but show a short message (visible when we reveal body)
+        document.body.innerHTML = '<div style="padding:2rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial">Access denied.</div>';
+        document.documentElement.removeAttribute('data-locked'); // reveal message
       }
     })();
   </script>

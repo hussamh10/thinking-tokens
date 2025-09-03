@@ -31,5 +31,3 @@ extra_javascript:
 theme:
   name: material  # or your theme
   custom_dir: overrides
-
-
