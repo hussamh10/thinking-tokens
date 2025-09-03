@@ -49,4 +49,4 @@ These often appear paradoxical (disobedient → lord of mercy). While there are 
 
 > and drive the sinful like a thirsty herd into Hell, (19:86)
 
-This just seems more aligned with Friedrich Nietzsche.md remark of contemptuous morality, where a wrong doer is punished as a means of vengeance. However, it is likely that these are merely tools to illustrate the wrongness of a deed and warn the wrong doers
+This just seems more aligned with friedrich-nietzsche.md remark of contemptuous morality, where a wrong doer is punished as a means of vengeance. However, it is likely that these are merely tools to illustrate the wrongness of a deed and warn the wrong doers
