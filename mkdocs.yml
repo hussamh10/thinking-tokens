@@ -1,7 +1,5 @@
 site_name: Hussam — Notes
-# If you want PATH: use the first; if SUBDOMAIN: use the second
-site_url: https://hussamhabib.com/notes/
-# site_url: https://notes.hussamhabib.com/
+site_url: https://hussamhabib.com/notes/   # <- important
 
 theme:
   name: material
@@ -12,7 +10,7 @@ theme:
 
 plugins:
   - search
-  - roamlinks     # supports Obsidian-style [[wikilinks]]
+  - roamlinks
 
 markdown_extensions:
   - admonition
@@ -22,5 +20,6 @@ markdown_extensions:
       permalink: true
 
 docs_dir: docs
-use_directory_urls: true
+# This avoids some edge cases with asset paths under a subpath:
+use_directory_urls: false
 
