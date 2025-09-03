@@ -1,5 +1,4 @@
 name: Deploy MkDocs
-
 on:
   push:
     branches: [ main ]
@@ -25,6 +24,9 @@ jobs:
       - run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      # 🔽 either remove this step…
+      # - name: Export public notes
+      #   run: python export_public.py
       - name: Build site
         run: mkdocs build --strict
       - name: Upload artifact
