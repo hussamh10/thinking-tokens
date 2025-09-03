@@ -2,6 +2,7 @@
 section: Writings
 publish: true
 password: benjamin
+lock_prompt: "This note is under construction. What’s the keyword?"
 ---
 outline-nostalgia.md
 `mumkin nahi ha waqt ki raftaar rok lein `
