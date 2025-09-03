@@ -1,18 +1,39 @@
 /* ---------- Notes pages (not homepage) ---------- */
 body:not(.home-index) {
-  background: #ffffff;
+  background: #ffffff !important;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Liberation Mono", monospace;
   font-family: var(--mono);
+  margin: 0;
+  padding: 0;
 }
 
-/* Control content width + alignment */
-body:not(.home-index) .md-content {
-  max-width: none;  /* let inner control width */
+/* Hide all Material chrome */
+body:not(.home-index) .md-header,
+body:not(.home-index) .md-sidebar,
+body:not(.home-index) .md-footer,
+body:not(.home-index) nav,
+body:not(.home-index) .md-tabs {
+  display: none !important;
 }
 
-body:not(.home-index) .md-content .md-content__inner {
-  width: 80ch;                    /* ~80 characters wide */
-  margin: 2rem auto;              /* center horizontally */
-  transform: translateX(60px);    /* nudge slightly right */
+/* Reset container so only content is shown */
+body:not(.home-index) .md-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Only show the content inner */
+body:not(.home-index) .md-main__inner {
+  display: block !important;
+  width: 80ch;                 /* wrap text at ~80 characters */
+  margin: 2rem auto;           /* center horizontally */
+  transform: translateX(60px); /* nudge a bit right */
+}
+
+/* Remove "Home" or page title blocks */
+body:not(.home-index) h1:first-of-type {
+  display: none !important;
 }
 
