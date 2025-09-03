@@ -66,6 +66,7 @@ if assets_src.exists():
 
 # Always regenerate index.md
 
+# Always regenerate index.md
 exported.sort(key=lambda t: t[0].lower())
 
 def mkdocs_href(out_name: str) -> str:
@@ -81,7 +82,14 @@ for title, fname in exported:
     if fname != "index.md":
         href = mkdocs_href(fname)
         lines.append(f'    <li><a href="{href}">{title}</a></li>')
-lines += ['  </ul>', '</div>', '']
+lines += [
+    '  </ul>',
+    '</div>',
+    ''
+]
+
+# ✅ write the homepage
+(DEST / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 print(f"Exported {len(exported)} notes (index.md regenerated).")
 
