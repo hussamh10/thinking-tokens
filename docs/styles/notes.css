@@ -43,7 +43,7 @@ body:not(.home-index) article.md-content__inner {
   margin: 2rem auto !important;   /* center horizontally */
   transform: translateX(30px);    /* nudge right */
   font-family: var(--mono) !important;
-  font-size: 0.7em;
+  font-size: 0.8rem;
   line-height: 1;
 }
 
