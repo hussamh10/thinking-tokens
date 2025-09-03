@@ -41,7 +41,7 @@ body:not(.home-index) .md-content__inner {
 body:not(.home-index) article.md-content__inner {
   width: 80ch !important;         /* wrap at ~80 chars */
   margin: 2rem auto !important;   /* center horizontally */
-  transform: translateX(80px);    /* nudge right */
+  transform: translateX(120px);    /* nudge right */
   font-family: var(--mono) !important;
   font-size: 0.6rem;
   line-height: 1.5;
